@@ -5,9 +5,6 @@ function maxSatisfied(
 ): number {
   let bestGrumpy = [...grumpy];
 
-  // console.log(customers);
-  // console.log(bestGrumpy);
-
   if (minutes < 1)
     return customers.reduce((a, b, index) => {
       if (bestGrumpy[index] === 0) return a;
@@ -19,8 +16,6 @@ function maxSatisfied(
       if (index >= i && index < i + minutes) return 1;
       return item;
     });
-
-    console.log(potentialNewGrumpy);
 
     const bestScore = customers.reduce((a, b, index) => {
       if (bestGrumpy[index] === 0) return a;
@@ -42,5 +37,3 @@ function maxSatisfied(
 }
 
 const result = maxSatisfied([10, 1, 7], [0, 0, 0], 0);
-
-console.log(result);
