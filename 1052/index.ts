@@ -3,31 +3,44 @@ function maxSatisfied(
   grumpy: number[],
   minutes: number
 ): number {
-  const { getMaxes, setMaxes } = maxes(minutes);
+  let bestGrumpy = [...grumpy];
 
-  for (let i = 0; i < customers.length; i++) {
-    const customer = customers[i];
-    const isGrumpy = grumpy[i];
+  // console.log(customers);
+  // console.log(bestGrumpy);
 
-    const value = isGrumpy ? customer : 0;
-    setMaxes(i, value);
-    console.log(getMaxes());
+  if (minutes < 1)
+    return customers.reduce((a, b, index) => {
+      if (bestGrumpy[index] === 0) return a;
+      return a + b;
+    });
+
+  for (let i = 0; i < customers.length; i += minutes) {
+    const potentialNewGrumpy = [...grumpy].map((item, index) => {
+      if (index >= i && index < i + minutes) return 1;
+      return item;
+    });
+
+    console.log(potentialNewGrumpy);
+
+    const bestScore = customers.reduce((a, b, index) => {
+      if (bestGrumpy[index] === 0) return a;
+      return a + b;
+    });
+
+    const current = customers.reduce((a, b, index) => {
+      if (potentialNewGrumpy[index] === 0) return a;
+      return a + b;
+    });
+
+    if (current > bestScore) bestGrumpy = [...potentialNewGrumpy];
   }
 
-  return 0;
+  return customers.reduce((a, b, index) => {
+    if (bestGrumpy[index] === 0) return a;
+    return a + b;
+  });
 }
 
-function maxes(minutes: number) {
-  const maxes: number[] = new Array(4).fill(0);
+const result = maxSatisfied([10, 1, 7], [0, 0, 0], 0);
 
-  const setMaxes = (i: number, value: number) => {
-    for (let k = 0; k < minutes; k++) {
-      if (i === 0 && value > maxes[i]) maxes[i] = value;
-      else if (value > maxes[i] && value < maxes[i - 1]) maxes[i] = value;
-    }
-  };
-
-  const getMaxes = () => maxes;
-
-  return { getMaxes, setMaxes };
-}
+console.log(result);
