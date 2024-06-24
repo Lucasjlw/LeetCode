@@ -1,7 +1,7 @@
 function maxSatisfied(
   customers: number[],
   grumpy: number[],
-  minutes: number,
+  minutes: number
 ): number {
   const { getMaxes, setMaxes } = maxes(minutes);
 

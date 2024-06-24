@@ -1,0 +1,18 @@
+{
+  "name": "LeetCode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Lucasjlw/LeetCode.git",
+  "author": "Lucasjlw <lucasjlw@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "dev": "nodemon "
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  }
+}
